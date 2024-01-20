@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
   resources :leases
-
+  post "/leases", to: "leases#create"
+  delete "/leases/:id", to: "leases#destroy"
 
 
   resources :reviews
-
+  get "/reviews", to: "reviews#index"
+  get "/reviews/:id", to: "reviews#show"
+  post "/reviews", to: "reviews#create"
+  delete "/reviews/:id", to: "reviews#destroy"
+  update "/reviews/:id", to: "reviews#update"
 
 
   resources :tenants

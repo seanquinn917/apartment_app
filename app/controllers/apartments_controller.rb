@@ -1,6 +1,7 @@
 class ApartmentsController < ApplicationController
 
 
+
     def index
         apartments = Apartment.all
         render json: apartments
@@ -10,6 +11,8 @@ class ApartmentsController < ApplicationController
         apartment = Apartment.find_by(id: params[:id])
         render json: apartment
     end 
+
+
 
 
 end
