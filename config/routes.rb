@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+
+  
   resources :leases
   post "/leases", to: "leases#create"
   delete "/leases/:id", to: "leases#destroy"
@@ -13,7 +16,8 @@ Rails.application.routes.draw do
 
 
   resources :tenants
-
+  post "/tenants", to: "tenants#create"
+  get "/tenants/:id", to: "tenants#show"
 
   
   resources :apartments
