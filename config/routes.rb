@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
   resources :leases
+
+
+
   resources :reviews
+
+
+
   resources :tenants
+
+
+  
   resources :apartments
 
   get "/apartments", to: "apartments#index"
-
+  get "/apartments/:id", to: "apartments#show"
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
