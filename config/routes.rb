@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  
+
   resources :leases
   post "/leases", to: "leases#create"
   delete "/leases/:id", to: "leases#destroy"
@@ -12,18 +12,23 @@ Rails.application.routes.draw do
   get "/reviews/:id", to: "reviews#show"
   post "/reviews", to: "reviews#create"
   delete "/reviews/:id", to: "reviews#destroy"
-  update "/reviews/:id", to: "reviews#update"
+  patch "/reviews/:id", to: "reviews#update"
 
 
   resources :tenants
   post "/tenants", to: "tenants#create"
   get "/tenants/:id", to: "tenants#show"
-
+  get "/me", to: "tenants#show"
+  
   
   resources :apartments
 
   get "/apartments", to: "apartments#index"
   get "/apartments/:id", to: "apartments#show"
+
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+  
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

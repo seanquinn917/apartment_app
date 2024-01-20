@@ -15,7 +15,7 @@ def show
 end
 
 def tenant_params
-    params.permit(:id, :name, :age, :lease_id)
+    params.permit(:id, :name, :age, :lease_id, :username, :password, :password_confirmation)
 end
 
 

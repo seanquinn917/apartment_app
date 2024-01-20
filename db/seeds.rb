@@ -24,14 +24,14 @@ l6 = Lease.create(content: "This binding agreement is good for one calendar year
 l7 = Lease.create(content: "This binding agreement is good for one calendar year", apartment_id: d7.id,  rent: 2500)
 
 
-t1 = Tenant.create(name: "Robbin Miller", age: 29, lease_id: l1.id)
-t2 = Tenant.create(name: "Justin Cobb", age: 37, lease_id: l2.id)
-t3 = Tenant.create(name: "Chris Hitt", age: 19, lease_id: l3.id)
-t4 = Tenant.create(name: "Rehna Scwhatsky", age: 35, lease_id: l4.id)
-t5 = Tenant.create(name: "Timber Care", age: 40, lease_id: l5.id)
-t6 = Tenant.create(name: "Jen Scott", age: 21, lease_id: l6.id)
-t7 = Tenant.create(name: "Bobbie Harry", age: 29, lease_id: l7.id)
-t8 = Tenant.create(name: "Reha bronsky", age: 29, lease_id: l7.id)
+t1 = Tenant.create(name: "Robbin Miller", age: 29, lease_id: l1.id, username: "RedBird")
+t2 = Tenant.create(name: "Justin Cobb", age: 37, lease_id: l2.id, username:"Timberlake")
+t3 = Tenant.create(name: "Chris Hitt", age: 19, lease_id: l3.id, username:"The_Other_Pratt")
+t4 = Tenant.create(name: "Rehna Scwhatsky", age: 35, lease_id: l4.id, username:"RussianSpy")
+t5 = Tenant.create(name: "Timber Care", age: 40, lease_id: l5.id, username:"TimberTheDog")
+t6 = Tenant.create(name: "Jen Scott", age: 21, lease_id: l6.id, username: "NotCody")
+t7 = Tenant.create(name: "Bobbie Harry", age: 29, lease_id: l7.id, username: "BobbieB")
+t8 = Tenant.create(name: "Reha bronsky", age: 29, lease_id: l7.id, username:"HockeyKid")
 
 
 
