@@ -1,6 +1,15 @@
 class TenantsController < ApplicationController
+    skip_before_action :authorized, only: [:create]
+
+
+
+def index
+tenants=Tenant.all
+render json: tenants 
+end
 
 def create
+    byebug
     tenant = Tenant.create!(tenant_params)
     render json: tenant, status: :created
 end

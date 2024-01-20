@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post "/tenants", to: "tenants#create"
   get "/tenants/:id", to: "tenants#show"
   get "/me", to: "tenants#show"
+  get "/tenants", to: "tenants#index"
   
   
   resources :apartments
