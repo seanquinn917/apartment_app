@@ -4,20 +4,17 @@ import { useEffect, useState } from "react";
 
 
 function Home({apartments}){
-console.log(apartments)
 
-// const apartmentSheet = apartments.map((apt)=>{
-//     return <li className="Apt Item">{apt.id}</li>
-// })
+    
 const tenants = apartments.map((apt)=>{
     const user = apt.tenants.map((t)=>{
         return t.name
     })
-    return <li>{apt.id},{user}</li>
+    return <li key={apt.id}>{apt.id}, {user}</li>
 })
 
-console.log(tenants)
-// console.log(apartmentSheet)
+
+
 
     return(
         <div>
