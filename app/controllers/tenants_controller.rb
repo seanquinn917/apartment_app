@@ -1,25 +1,30 @@
 class TenantsController < ApplicationController
-    skip_before_action :authorized, only: [:create, :index]
+    skip_before_action :authorized, only: [:show, :create, :index]
 
 
 
 def index
-tenants=Tenant.all
-render json: tenants 
+    tenants=Tenant.all
+    render json: tenants 
 end
 
 def create
-    byebug
-    tenant = Tenant.create!(tenant_params)
+    tenant = Tenant.create(tenant_params)
+    if tenant 
+    session[:tenant_id] = tenant.id
     render json: tenant, status: :created
-end
+    else 
+        render json: {errors: tenant.errors.full_messages}, status: :unprocessible_entity
+    end
+end 
 
 def show
-    tenant = Tenant.find_by(id: params[:id])
-    if tenant
-        render json: tenant
+    if session[:tenant_id]
+    tenant = Tenant.find_by(id: session[:tenant_id])
+    render json: tenant, status: :ok
+    puts session[:tenant_id]
     else
-        render json: {error: "tenant not found"}, status: :not_found
+        render json: {errors: "tenant not found"}, status: :not_found
     end
 end
 

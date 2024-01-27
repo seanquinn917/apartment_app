@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :leases
   post "/leases", to: "leases#create"
   delete "/leases/:id", to: "leases#destroy"
-
+  get "/leases", to: "leases#index"
 
   resources :reviews
   get "/reviews", to: "reviews#index"
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get "/tenants/:id", to: "tenants#show"
   get "/me", to: "tenants#show"
   get "/tenants", to: "tenants#index"
-  
+  get '/me', to: "tenants#show"
   
   resources :apartments
 

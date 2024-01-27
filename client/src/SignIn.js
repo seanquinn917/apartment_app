@@ -12,8 +12,17 @@ import Grid from '@mui/material/Grid';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import UserContext from './User-Context';
+import { useContext, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
+
+
+
+
+
+
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -30,15 +39,55 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+export default function SignIn() {
+  const[tenant, setTenant]=useContext(UserContext)
+  const[username, setUserName]= useState("")
+  const[password, setPassword]=useState('')
+  const[errors, setErrors]=useState([])
+
+  const navigate=useNavigate()
+
+  function onLogin(e) {
+    e.preventDefault();
+    setErrors([])
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    })
+      .then((r) => {
+        if (r.ok) {
+         r.json().then((tenant) => {
+          setTenant(tenant);
+          navigate("/home");
+        })
+        } else {
+          r.json().then((err) => console.log(err.error));;
+        }
+      })
+      
+      
+      // .catch((err) => {
+      //   setErrors(err.errors);
+        
+      // });
+  }
+
+  
+  
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+
+
+ 
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -74,26 +123,27 @@ export default function SignInSide() {
             <Typography component="h1" variant="h5">
               Welcome Home
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" noValidate onSubmit={onLogin} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                id="email"
+                type='text'
+                id="username"
                 label="UserName"
-                name="email"
-                autoComplete="email"
+                value={username}
                 autoFocus
+                onChange={(e)=>setUserName(e.target.value)}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="password"
+                type='text'
                 label="Password"
-                type="password"
                 id="password"
-                autoComplete="current-password"
+                value={password}
+                onChange={(e)=>setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}

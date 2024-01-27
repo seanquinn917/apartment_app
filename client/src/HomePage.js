@@ -15,19 +15,26 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useContext } from 'react';
+import UserContext from './User-Context';
+import { useNavigate } from 'react-router-dom';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright() {
+
+
+
+
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://mui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const cards = [1];
 
@@ -35,25 +42,38 @@ const cards = [1];
 const defaultTheme = createTheme();
 
 export default function HomePage({apartments}) {
-
+  const[tenant, setTenant]=useContext(UserContext)
+  const navigate=useNavigate()
     const apt_number = apartments.map((apt)=>{
         return apt.number
     })
     
+console.log(tenant)
+    function logOut(e){
+      e.preventDefault();
+      fetch("/logout",{
+        method: "DELETE"
+      }).then(()=>{
+        setTenant(null)
+        navigate('/')})
+    }
 
 
-
-
+    if (tenant === null) {
+      return <p>Loading...</p>;
+    }
 
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <AppBar position="relative">
+      
         <Toolbar>
           {/* <CameraIcon sx={{ mr: 2 }} /> */}
           <Typography variant="h6" color="inherit" noWrap>
-            Home Page / welcome back logged in user
+            Home Page / welcome back {tenant.name}
+            
           </Typography>
         </Toolbar>
       </AppBar>
@@ -142,7 +162,7 @@ export default function HomePage({apartments}) {
         >
           Something here to give the footer a purpose!
         </Typography>
-        <Copyright />
+        {/* <Copyright /> */}
       </Box>
       {/* End footer */}
     </ThemeProvider>
