@@ -21,9 +21,8 @@ function Reviews({apartments, setApartments}){
     
 
 
-console.log(tenant)
-
-
+console.log(tenant.id)
+console.log(apartments[0].reviews)
 
 
 

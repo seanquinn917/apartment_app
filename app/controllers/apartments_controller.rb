@@ -4,7 +4,7 @@ skip_before_action :authorized, only: [:index, :show]
 
     def index
         apartments = Apartment.all
-        render json: apartments
+        render json: apartments, include: :leases
     end
 
     def show 

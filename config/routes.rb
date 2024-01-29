@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post "/leases", to: "leases#create"
   delete "/leases/:id", to: "leases#destroy"
   get "/leases", to: "leases#index"
+  get "/lease/:id", to: "leases#show"
 
   resources :reviews
   get "/reviews", to: "reviews#index"
