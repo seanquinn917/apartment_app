@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-skip_before_action :authorized, only: [:create, :destroy, :update, :index]
+skip_before_action :authorized, only: [:index]
 
 def index 
     reviews = Review.all

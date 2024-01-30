@@ -15,9 +15,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import UserContext from './User-Context';
 import { useContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { List } from '@mui/material';
 
 function Copyright(props) {
-
+  const [errors, setErrors] = useState([]);
 
 
 
@@ -46,7 +47,7 @@ export default function SignIn() {
   const[errors, setErrors]=useState([])
 
   const navigate=useNavigate()
-
+  console.log(tenant)
   function onLogin(e) {
     e.preventDefault();
     setErrors([])
@@ -64,7 +65,7 @@ export default function SignIn() {
           navigate("/home");
         })
         } else {
-          r.json().then((err) => console.log(err.error));;
+          r.json().then((err) => setErrors(err.error));;
         }
       })
       
@@ -145,10 +146,15 @@ export default function SignIn() {
                 value={password}
                 onChange={(e)=>setPassword(e.target.value)}
               />
-              <FormControlLabel
+              <ul>
+                {errors.map((err) => (
+                   <List key={err}>{err}</List>
+                       ))}
+              </ul>
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
-              />
+              /> */}
               <Button
                 type="submit"
                 fullWidth

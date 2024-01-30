@@ -22,15 +22,17 @@ Rails.application.routes.draw do
   get "/me", to: "tenants#show"
   get "/tenants", to: "tenants#index"
   get '/me', to: "tenants#show"
+
   
   resources :apartments
 
   get "/apartments", to: "apartments#index"
   get "/apartments/:id", to: "apartments#show"
 
+ 
+  
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-  
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

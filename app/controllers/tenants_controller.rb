@@ -1,5 +1,5 @@
 class TenantsController < ApplicationController
-    skip_before_action :authorized, only: [:show, :create, :index]
+    skip_before_action :authorized, only: [:create, :show, :index]
 
 
 

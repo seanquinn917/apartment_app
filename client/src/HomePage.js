@@ -50,15 +50,7 @@ export default function HomePage({apartments, setApartments}) {
     })
     
 console.log(tenant)
-    function logOut(e){
-      e.preventDefault();
-      fetch("/logout",{
-        method: "DELETE"
-      }).then(()=>{
-        setTenant(null)
-        navigate('/')})
-    }
-
+   
     const id = apartments.map((apt)=>{
       return apt.id
     })
@@ -71,16 +63,7 @@ console.log(tenant)
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <AppBar position="relative">
       
-        <Toolbar>
-          {/* <CameraIcon sx={{ mr: 2 }} /> */}
-          <Typography variant="h6" color="inherit" noWrap>
-            Home Page / welcome back {tenant.name}
-            
-          </Typography>
-        </Toolbar>
-      </AppBar>
 
 
 

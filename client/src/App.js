@@ -8,7 +8,7 @@ import Reviews from './Reviews';
 import UserContext, { UserProvider } from './User-Context';
 import AptDetail from './AptDetail';
 import LeaseDetail from './LeaseDetail';
-
+import Header from './Header';
 
 function App() {
   const[apartments, setApartments]=useState([])
@@ -34,6 +34,7 @@ function App() {
       
       <BrowserRouter>
       <UserProvider>
+        <Header/>
           <Routes>
             <Route path='/' element={<SignIn/>}/>
             <Route path='/login' element={<SignIn/>}/>
