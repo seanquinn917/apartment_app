@@ -17,12 +17,12 @@ Rails.application.routes.draw do
 
 
   resources :tenants
-  post "/tenants", to: "tenants#create"
+  post "/signup", to: "tenants#create"
   get "/tenants/:id", to: "tenants#show"
   get "/me", to: "tenants#show"
   get "/tenants", to: "tenants#index"
   get '/me', to: "tenants#show"
-
+  
   
   resources :apartments
 

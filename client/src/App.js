@@ -9,6 +9,7 @@ import UserContext, { UserProvider } from './User-Context';
 import AptDetail from './AptDetail';
 import LeaseDetail from './LeaseDetail';
 import Header from './Header';
+import SignUp from './SignUp';
 
 function App() {
   const[apartments, setApartments]=useState([])
@@ -40,9 +41,10 @@ function App() {
             <Route path='/login' element={<SignIn/>}/>
             <Route path='/home' element={<HomePage setApartments={setApartments} apartments={apartments}/>}/>
             <Route path='/Reviews' element={<Reviews apartments={apartments} setApartments={setApartments}/>}/>
-            <Route path='/Signup' element={<SignIn/>}/>
+            {/* <Route path='/Login' element={<SignIn/>}/> */}
             <Route path='/apartments/:id' element={<AptDetail apartments={apartments} setApartments={setApartments}/>}/>
             <Route path='/leases/:id' element={<LeaseDetail apartments={apartments} setApartments={setApartments}/>}/>
+            <Route path='/signup' element={<SignUp/>}/>
           </Routes>
           </UserProvider>
         </BrowserRouter>

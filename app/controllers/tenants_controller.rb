@@ -10,11 +10,16 @@ end
 
 def create
     tenant = Tenant.create(tenant_params)
-    if tenant 
-    session[:tenant_id] = tenant.id
-    render json: tenant, status: :created
+    if tenant.save
+        tenant.avatar.attach(params[:avatar])
+        if tenant.avatar.attached?
+            session[:tenant_id] = tenant.id
+            render json: tenant, status: :created
+        else
+            render json: { errors: ['Failed to attach avatar'] }, status: :unprocessable_entity
+        end
     else 
-        render json: {errors: tenant.errors.full_messages}, status: :unprocessible_entity
+        render json: {errors: tenant.errors.full_messages}, status: :unprocessable_entity
     end
 end 
 
@@ -29,7 +34,7 @@ def show
 end
 
 def tenant_params
-    params.permit(:id, :name, :age, :lease_id, :username, :password, :password_confirmation)
+    params.require(:tenant).permit(:id, :name, :age, :lease_id, :username, :password, :password_confirmation, :avatar)
 end
 
 

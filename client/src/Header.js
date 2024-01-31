@@ -8,6 +8,7 @@ import UserContext from "./User-Context";
 import { Button } from "@mui/material";
 import Box from '@mui/material/Box';
 import { useNavigate } from "react-router-dom";
+import './App.css';
 
 
 
@@ -31,6 +32,8 @@ function Header(){
           navigate('/')})
       }
   
+    //   const avatarUrl = tenant.avatar.record.avatar_url;
+    //   console.log(tenant.avatar_url)
 return(
 <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
@@ -40,10 +43,10 @@ return(
             {/* <CameraIcon sx={{ mr: 2 }} /> */}
             <Typography  variant="h6" color="inherit" noWrap>
               {tenant ? `Welcome Home ${tenant.name}`: "Welcome"}
-              
+              {/* <img src={tenant.avatar_url} alt="Avatar" /> */}
             </Typography>
           </Toolbar>
-          {tenant? <button onClick={logOut}>Click here to logout</button>: null}
+          {tenant? <button style={{background: "black", color: "white", fontSize: 15}} onClick={logOut}>Click here to logout</button>: null}
         </AppBar>
         
 </ThemeProvider>

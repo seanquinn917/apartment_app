@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-skip_before_action :authorized, only: [:create, :get_current_tenant]
+skip_before_action :authorized, only: [:create, :get_current_tenant, :destroy]
 
 
     def create
@@ -15,7 +15,6 @@ skip_before_action :authorized, only: [:create, :get_current_tenant]
 
     def destroy
         tenant=Tenant.find_by(id: session[:tenant_id])
-        puts tenant&.id
         if tenant
             session.delete :tenant_id
             head :no_content

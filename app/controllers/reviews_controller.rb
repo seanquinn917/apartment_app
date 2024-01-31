@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-skip_before_action :authorized, only: [:index]
+skip_before_action :authorized, only: [:index, :show, :create, :destroy, :update]
 
 def index 
     reviews = Review.all
@@ -32,7 +32,8 @@ def destroy
 end
 
 def update
-    review = Review.find_by(id: params{:id})
+   
+    review = Review.find_by(id: params[:id])
     if review
         review.update(review_params)
         render json: review, status: :accepted
@@ -45,7 +46,7 @@ end
 private
 
 def review_params
-    params.require(:review).permit(:tenant_id, :apartment_id, :content)
+    params.require(:review).permit(:id, :tenant_id, :apartment_id, :content)
 end 
 
 end
