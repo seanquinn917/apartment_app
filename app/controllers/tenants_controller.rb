@@ -10,14 +10,15 @@ end
 
 def create
     tenant = Tenant.create(tenant_params)
+    byebug
     if tenant.save
         tenant.avatar.attach(params[:avatar])
-        if tenant.avatar.attached?
-            session[:tenant_id] = tenant.id
-            render json: tenant, status: :created
-        else
-            render json: { errors: ['Failed to attach avatar'] }, status: :unprocessable_entity
-        end
+        # tenant.avatar.attached?
+        session[:tenant_id] = tenant.id
+        render json: tenant, status: :created
+        # else
+        #     render json: { errors: ['Failed to attach avatar'] }, status: :unprocessable_entity
+        
     else 
         render json: {errors: tenant.errors.full_messages}, status: :unprocessable_entity
     end

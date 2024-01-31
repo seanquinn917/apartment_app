@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
+import Link from '@mui/material/Link';
 
 
 function SignUp(){
@@ -40,7 +41,7 @@ function SignUp(){
             name,
             password,
             password_confirmation: passwordConfirmation,
-            avatar: null
+            avatar: avatar
         }
         console.log(newTenant)
         fetch('/signup',{
@@ -153,15 +154,19 @@ function SignUp(){
             <div className="Form Control">
                 <Button type="submit">Signup</Button>
             </div>
+            
             </Grid>
             </Grid>
+            
             </Box>
         <ul>
         {/* {errors.map((err) => (
           <List key={err}>{err}</List>
         ))} */}
         </ul>
-        
+        <Link href="/login" variant="body2">
+                    {"ALready Signed up? Click here to login"}
+            </Link>
         </Container>
     </ThemeProvider>
     )
