@@ -33,6 +33,7 @@ function SignUp(){
       
 
     function handleSubmit(e){
+        console.log(password)
         e.preventDefault();
         setErrors([])
         const newTenant={
@@ -41,6 +42,7 @@ function SignUp(){
             name,
             password,
             password_confirmation: passwordConfirmation,
+            lease_id,
             avatar: avatar
         }
         console.log(newTenant)
@@ -160,9 +162,9 @@ function SignUp(){
             
             </Box>
         <ul>
-        {/* {errors.map((err) => (
+        {errors.map((err) => (
           <List key={err}>{err}</List>
-        ))} */}
+        ))}
         </ul>
         <Link href="/login" variant="body2">
                     {"ALready Signed up? Click here to login"}

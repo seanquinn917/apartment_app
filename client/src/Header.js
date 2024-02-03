@@ -21,7 +21,7 @@ function Header(){
     // if(!tenant){
     //     return <h1>loading...</h1>
     // }
-
+    console.log(tenant.avatar)
 
     function logOut(e){
         e.preventDefault();

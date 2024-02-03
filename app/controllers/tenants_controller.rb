@@ -9,16 +9,14 @@ def index
 end
 
 def create
-    tenant = Tenant.create(tenant_params)
     byebug
+    tenant = Tenant.create(tenant_params)
     if tenant.save
+        puts "Params avatar: #{params[:avatar]}"
         tenant.avatar.attach(params[:avatar])
-        # tenant.avatar.attached?
+        tenant.avatar.attached?
         session[:tenant_id] = tenant.id
         render json: tenant, status: :created
-        # else
-        #     render json: { errors: ['Failed to attach avatar'] }, status: :unprocessable_entity
-        
     else 
         render json: {errors: tenant.errors.full_messages}, status: :unprocessable_entity
     end
@@ -26,16 +24,16 @@ end
 
 def show
     if session[:tenant_id]
-    tenant = Tenant.find_by(id: session[:tenant_id])
-    render json: tenant, status: :ok
-    puts session[:tenant_id]
+        tenant = Tenant.find_by(id: session[:tenant_id])
+        render json: tenant, status: :ok
+        puts session[:tenant_id]
     else
         render json: {errors: "tenant not found"}, status: :not_found
     end
 end
 
 def tenant_params
-    params.require(:tenant).permit(:id, :name, :age, :lease_id, :username, :password, :password_confirmation, :avatar)
+    params.permit(:id, :name, :age, :lease_id, :password, :password_confirmation, :username, :avatar)
 end
 
 
