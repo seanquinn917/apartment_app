@@ -1,4 +1,6 @@
 class TenantSerializer < ActiveModel::Serializer
+
+  
   attributes :id, :name, :age, :username, :lease_id, :lease_content, :rent, :apartment_id, :avatar
   belongs_to :lease
 
@@ -15,5 +17,5 @@ class TenantSerializer < ActiveModel::Serializer
     object.lease&.apartment_id
   end
 
-
+  
 end
