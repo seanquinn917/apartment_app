@@ -33,7 +33,7 @@ def show
 end
 
 def tenant_params
-    params.require(:tenant).permit(:id, :name, :age, :lease_id, :password, :password_confirmation, :username, :avatar)
+    params.permit(:id, :name, :age, :lease_id, :password, :password_confirmation, :username, :avatar)
 end
 
 
