@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-skip_before_action :authorized, only: [:index, :show, :create, :destroy, :update]
+skip_before_action :authorized, only: [:index, :show]
 
 def index 
     reviews = Review.all
@@ -17,6 +17,7 @@ end
 
 def create
     review=Review.create!(review_params)
+    byebug
     if review
         render json: review
     else 

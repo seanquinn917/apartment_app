@@ -4,10 +4,4 @@ class ApartmentSerializer < ActiveModel::Serializer
   has_many :tenants, through: :leases 
   has_many :reviews
 
-  
- 
-
-
-  
-
 end

@@ -29,7 +29,7 @@ function AptDetail({apartments, setApartments}){
     if(!apartment){
         return <h1>loading...</h1>
     }
-
+console.log(tenant)
     
 function handleReviewFormChange(e){
     e.preventDefault()
@@ -166,8 +166,13 @@ function handleReviewFormChange(e){
             return lease.id
         })
 
+ const errorList = errors.map((err, index)=>{
+  <li key= {index}>{err}</li>
+})
 
-        
+
+
+
 
   const reviews = apartment.reviews.map((review)=>{
     if(tenant.id===review.tenant_id){
@@ -250,9 +255,12 @@ function handleReviewFormChange(e){
                 <ul>
                 <Typography variant="h5" align="center" color="text.secondary" paragraph>
                     Is this your home? We'd love to hear from you!
+                    {errorList}
                 </Typography>
                 <input type="text" name="content" value={newReviewContent.content} onChange={handleReviewFormChange}></input>
                 </ul>
+                
+              
                 <Button
                 type="submit"
                 // fullWidth
@@ -261,8 +269,9 @@ function handleReviewFormChange(e){
               >
                 Submit
               </Button>
-                {/* <input type="submit" value="submit"></input> */}
+              <Typography>{errors}</Typography>
                </form> : null}
+               
                
         </div>
 

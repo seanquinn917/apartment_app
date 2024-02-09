@@ -4,12 +4,11 @@ class TenantsController < ApplicationController
 
 
 def index
-    tenants=Tenant.all
+    tenants=Tenant.all.with_attached_image
     render json: tenants 
 end
 
 def create
-    byebug
     tenant = Tenant.create(tenant_params)
     if tenant.save
         puts "Params avatar: #{params[:avatar]}"
@@ -33,7 +32,7 @@ def show
 end
 
 def tenant_params
-    params.permit(:id, :name, :age, :lease_id, :password, :password_confirmation, :username, :avatar)
+    params.permit(:id, :name, :age, :lease_id, :password, :password_confirmation, :username, :image)
 end
 
 

@@ -45,29 +45,26 @@ const defaultTheme = createTheme();
 export default function HomePage({apartments, setApartments}) {
   const[tenant, setTenant]=useContext(UserContext)
   const navigate=useNavigate()
-    const apt_number = apartments.map((apt)=>{
-        return apt.number
-    })
-    
-console.log(tenant)
    
-    const id = apartments.map((apt)=>{
-      return apt.id
-    })
+    
 
+   
+    
     if (tenant === null) {
       return <p>Loading...</p>;
     }
 
+  const apt_number = apartments.map((apt)=>{
+      return apt.number
+  })
+
+  const id = apartments.map((apt)=>{
+    return apt.id
+  })
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      
-
-
-
-
       <main>
         {/* Hero unit */}
         <Box
