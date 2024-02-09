@@ -11,9 +11,9 @@ end
 def create
     tenant = Tenant.create(tenant_params)
     if tenant.save
-        puts "Params avatar: #{params[:avatar]}"
-        tenant.avatar.attach(params[:avatar])
-        tenant.avatar.attached?
+        puts "Params image: #{params[:image]}"
+        tenant.image.attach(params[:image])
+        tenant.image.attached?
         session[:tenant_id] = tenant.id
         render json: tenant, status: :created
     else 

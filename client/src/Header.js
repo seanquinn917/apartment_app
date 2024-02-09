@@ -10,14 +10,18 @@ import Box from '@mui/material/Box';
 import { useNavigate } from "react-router-dom";
 import './App.css';
 
-
+function UserImage ({imageUrl}){
+  return <img src={imageUrl} alt= "user avatar"/>
+ };
 
 function Header(){
     const[tenant, setTenant]=useContext(UserContext)
     const defaultTheme = createTheme();
     const navigate = useNavigate();
 
+   
 
+   
     // if(!tenant){
     //     return <h1>loading...</h1>
     // }
@@ -42,8 +46,12 @@ return(
           <Toolbar>
             {/* <CameraIcon sx={{ mr: 2 }} /> */}
             <Typography  variant="h6" color="inherit" noWrap>
-              {tenant ? `Welcome Home ${tenant.name}`: "Welcome"}
-              {/* <img src={tenant.avatar_url} alt="Avatar" /> */}
+              {tenant ? (
+                <>
+                 {`Welcome Home ${tenant.name}` }
+                 {tenant.image? <UserImage imageUrl={tenant.image}/> : null}
+                 </>
+                ): "Welcome"}
             </Typography>
           </Toolbar>
           {tenant? <button style={{background: "black", color: "white", fontSize: 15}} onClick={logOut}>Click here to logout</button>: null}

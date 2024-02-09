@@ -21,37 +21,51 @@ function SignUp(){
     const[name, setName]=useState('')
     const[age, setAge]=useState('')
     const[errors, setErrors]=useState([])
-    const[avatar, setAvatar]=useState(null)
+    const[image, setImage]=useState(null)
     const[lease_id, setLease_id]=useState('')
+    const[isImage, setIsImage]=useState(false)
     const navigate=useNavigate()
     const defaultTheme = createTheme();
 
-    const handleAvatarChange = (e) => {
+    const handleImageChange = (e) => {
         const file = e.target.files[0];
-        setAvatar(file);
+        setImage(file);
       };
+
+
+      
+     
+      
+      // const newTenant={
+      //     username,
+      //     age,
+      //     name,
+      //     password,
+      //     password_confirmation: passwordConfirmation,
+      //     lease_id,
+      //     image:image
+      // }
+      
       
 
     function handleSubmit(e){
-        console.log(password)
-        e.preventDefault();
-        setErrors([])
-        const newTenant={
-            username,
-            age,
-            name,
-            password,
-            password_confirmation: passwordConfirmation,
-            lease_id,
-            avatar: avatar
-        }
-        console.log(newTenant)
+      e.preventDefault();
+      setErrors([]);
+      if(!image) {
+        setIsImage(true)
+      }else {
+        const formData = new FormData();
+        formData.append('username', username)
+        formData.append('name', name)
+        formData.append('age', age)
+        formData.append('password', password)
+        formData.append('password_confirmation', passwordConfirmation)
+        formData.append('lease_id', lease_id)
+        formData.append('image', image)
+        console.log(formData)
         fetch('/signup',{
             method: "POST",
-            headers: {
-                "Content-type":"application/json"
-            },
-            body:JSON.stringify(newTenant),
+            body: formData,
         }).then((r)=> {
             if(r.ok){
                 r.json()
@@ -61,6 +75,7 @@ function SignUp(){
             r.json().then((err)=>setErrors(err.errors))
         }
         })
+      }
     }
    
 
@@ -144,12 +159,12 @@ function SignUp(){
              
             <Grid item xs={12} sm={6}>
             
-            <label style={{fontSize:"large"}}htmlFor="tenant_avatar">Choose your Avatar</label>
+            <label style={{fontSize:"large"}}htmlFor="image">Choose your Avatar</label>
             <input
               type="file"
-              name="avatar"
-              id="tenant_avatar"
-              onChange={handleAvatarChange}
+              name="image"
+              id="image"
+              onChange={(e)=>setImage(e.target.files[0])}
             />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -162,9 +177,9 @@ function SignUp(){
             
             </Box>
         <ul>
-        {errors.map((err) => (
+        {/* {errors.map((err) => (
           <List key={err}>{err}</List>
-        ))}
+        ))} */}
         </ul>
         <Link href="/login" variant="body2">
                     {"ALready Signed up? Click here to login"}

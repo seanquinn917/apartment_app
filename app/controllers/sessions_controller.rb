@@ -6,7 +6,6 @@ skip_before_action :authorized, only: [:create, :get_current_tenant, :destroy]
         tenant = Tenant.find_by(username: params[:username])
         if tenant && tenant.authenticate(params[:password])
             session[:tenant_id]=tenant.id
-            byebug
             puts session[:tenant_id]
             render json: tenant, status: :ok
         else
