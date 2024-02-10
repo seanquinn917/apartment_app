@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get "/tenants/:id", to: "tenants#show"
   get "/me", to: "tenants#show"
   get "/tenants", to: "tenants#index"
-  get '/me', to: "tenants#show"
+  delete '/tenants/:id', to: "tenants#destroy"
   
   
   resources :apartments

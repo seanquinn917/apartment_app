@@ -29,7 +29,7 @@ function AptDetail({apartments, setApartments}){
     if(!apartment){
         return <h1>loading...</h1>
     }
-console.log(tenant)
+
     
 function handleReviewFormChange(e){
     e.preventDefault()
@@ -59,16 +59,17 @@ function handleReviewFormChange(e){
             if(r.ok){
                 r.json()
                 .then((newReview)=>{
-                    console.log(newReview)
                     const updatedApartments = [...apartments]
                     const targetApartment=updatedApartments.find((r)=>r.id ===parseInt(id))
                     targetApartment.reviews.push(newReview)
                     setApartments(updatedApartments)
+                    setNewReviewContent({content: " "})
                 })
             }else {
                 r.json().then((err)=>{
                     console.log(err)
                     setErrors([err.exception])
+                    
                 })
             }
         })

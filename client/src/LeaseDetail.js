@@ -68,9 +68,9 @@ function LeaseDetail({apartments, setApartments}){
               Livadia Realty Terms
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Tenant {tenant.name}, hereby signs this lease that states: {tenant.lease_content}.
-              Access to this website is granted via the username created: {tenant.username} and will expire if lease is not renewed.  
-              Tenant agrees to pay the dollar amoutn of {tenant.rent} US dollars on the first of every month.
+              Tenant {tenant.name}, hereby signs this lease Id:{tenant.lease_id} that states: {tenant.lease_content}.
+              Access to this website is granted via the username created: {tenant.username} and will expire if/when lease is not renewed.  
+              Tenant agrees to pay the dollar amount of {tenant.rent} US dollars on the first of every month.
             </Typography>
             <Stack
               sx={{ pt: 4 }}

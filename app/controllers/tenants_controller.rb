@@ -1,5 +1,5 @@
 class TenantsController < ApplicationController
-    skip_before_action :authorized, only: [:create, :show, :index]
+    skip_before_action :authorized, only: [:create, :show, :index, :destroy]
 
 
 
@@ -29,6 +29,13 @@ def show
     else
         render json: {errors: "tenant not found"}, status: :not_found
     end
+end
+
+
+def destroy
+    tenant = Tenant.find_by(id:params[:id])
+    tenant.destroy
+    head :no_content
 end
 
 def tenant_params

@@ -17,7 +17,6 @@ end
 
 def create
     review=Review.create!(review_params)
-    byebug
     if review
         render json: review
     else 
@@ -33,7 +32,6 @@ def destroy
 end
 
 def update
-   
     review = Review.find_by(id: params[:id])
     if review
         review.update(review_params)
