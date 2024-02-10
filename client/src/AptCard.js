@@ -19,6 +19,9 @@ function AptCard({id, number, apartments, setApartments}){
 
 const cards = [1];
 
+
+
+
     return(
 
       // <div>

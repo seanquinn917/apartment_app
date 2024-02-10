@@ -177,9 +177,9 @@ function SignUp(){
             
             </Box>
         <ul>
-        {/* {errors.map((err) => (
+        {errors.map((err) => (
           <List key={err}>{err}</List>
-        ))} */}
+        ))}
         </ul>
         <Link href="/login" variant="body2">
                     {"ALready Signed up? Click here to login"}
