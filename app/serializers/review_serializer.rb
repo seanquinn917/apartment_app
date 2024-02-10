@@ -1,5 +1,5 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id, :content, :tenant_id, :apartment_id,:username
+  attributes :id, :content, :tenant_id, :apartment_id, :username
 
 
 
