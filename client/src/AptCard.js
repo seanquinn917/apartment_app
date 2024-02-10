@@ -45,15 +45,14 @@ const cards = [1];
                        // 16:9
                        pt: '56.25%',
                      }}
-                     image="https://source.unsplash.com/random?wallpapers"
+                     image="https://images.unsplash.com/photo-1692695090736-669a4180c71b?q=80&w=1036&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                    />
                    <CardContent sx={{ flexGrow: 1 }}>
                      <Typography gutterBottom variant="h5" component="h2">
                        
                      </Typography>
-                     <Typography>
+                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
                        Apt {number} of The Crescent at Astoria
-                        
                      </Typography>
                    </CardContent>
                    <CardActions>

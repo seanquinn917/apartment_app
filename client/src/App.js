@@ -41,7 +41,6 @@ function App() {
             <Route path='/login' element={<SignIn/>}/>
             <Route path='/home' element={<HomePage setApartments={setApartments} apartments={apartments}/>}/>
             <Route path='/Reviews' element={<Reviews apartments={apartments} setApartments={setApartments}/>}/>
-            {/* <Route path='/Login' element={<SignIn/>}/> */}
             <Route path='/apartments/:id' element={<AptDetail apartments={apartments} setApartments={setApartments}/>}/>
             <Route path='/leases/:id' element={<LeaseDetail apartments={apartments} setApartments={setApartments}/>}/>
             <Route path='/signup' element={<SignUp/>}/>
