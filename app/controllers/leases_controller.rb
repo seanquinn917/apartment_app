@@ -1,6 +1,6 @@
 class LeasesController < ApplicationController
-
-    # skip_before_action :authorized, only: [:index, :show]
+skip_before_action :authorized, only: [:index]
+  
     
     def index
         leases = Lease.all
@@ -14,7 +14,12 @@ class LeasesController < ApplicationController
 
     def create 
     lease = Lease.create!(lease_params)
-    render json: lease, status: :created
+        if lease.valid?
+            render json: lease, status: :created
+        else 
+            render json: {errors: lease.errors.full_messages}, status: :unprocessable_entity
+        end
+            render json: lease, status: :created
     end
 
     def destroy 

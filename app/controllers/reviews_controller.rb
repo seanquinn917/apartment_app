@@ -26,13 +26,13 @@ end
 
 
 def destroy
-    review=Review.find_by(id: params[:id])
+    review=@current_tenant.reviews.find_by(id: params[:id])
     review.destroy
     head :no_content
 end
 
 def update
-    review = Review.find_by(id: params[:id])
+    review = @current_tenant.reviews.find_by(id: params[:id])
     if review
         review.update(review_params)
         render json: review, status: :accepted
@@ -40,7 +40,18 @@ def update
         render json: {errors: "review not found"}, status: :not_found
     end
 end
-
+# def update
+#     review = Review.find_by(id: params[:id])
+#     if review
+#       if review.update(review_params)
+#         render json: review, status: :accepted
+#       else
+#         render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+#       end
+#     else
+#       render json: { errors: "Review not found" }, status: :not_found
+#     end
+#   end
 
 private
 

@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
+import SignIn from "./SignIn";
 
 
 function LeaseDetail({apartments, setApartments}){
@@ -16,34 +17,13 @@ function LeaseDetail({apartments, setApartments}){
     const[tenant, setTenant]=useContext(UserContext)
     
 
-    if(!tenant){
-        return <h1>loading...</h1>
+    
+    if(!tenant) {
+      return <SignIn />
     }
-
     
-   
-    // const apartment = apartments.map((apt)=>{
-    //     if( apt.id === tenant.apartment_id){
-    //         return apt
-    //     } else if (apartment.length >0){
-    //         const apartmentNumber = apartment[0].number;
-    //         return apartmentNumber
-    //     } 
-    //         return null
-    //     })
-        
-    
-    // console.log(apartment)
-    
-    // if(apartment.length >0){
-    //     const apartmentNumber = apartment[0].number;
-    //     return apartmentNumber
-       
-    // } 
-
-    // if(!apartment){
-    //     return <h1>Loading...</h1>
-    // }
+    console.log(tenant)
+  
     const defaultTheme = createTheme();
     
     return (

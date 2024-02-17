@@ -1,6 +1,9 @@
 class Tenant < ApplicationRecord
     validates :username, presence: true 
     validates :username, uniqueness: true
+    validates :name, presence:true
+    validates :age, presence:true
+    validates :age, numericality: {greater_than_or_equal_to: 18}
     has_secure_password
     belongs_to :lease 
     has_many :reviews

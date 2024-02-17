@@ -19,28 +19,26 @@ function AptCard({id, number, apartments, setApartments}){
 
 const cards = [1];
 
-
+ 
 
 
     return(
 
-      // <div>
-      //   <hi>{number}</hi>
-      //   <Link to={`/apartments/${id}`}>More details</Link>
-      // </div>
+      
 
         <div>
 
 
 
           
-         <Container  sx={{ py: 8 }} maxWidth="md">
+         <Container  sx={{ py: 4}} maxWidth="md">
            {/* End hero unit */}
-           <Grid container spacing={4}>
+           <Grid container spacing={0}>
+         
              {cards.map((card) => (
                <Grid item key={card} xs={12} sm={6} md={4}>
                  <Card  
-                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                   sx={{ height: '100%', display: 'flex',  flexDirection: 'column'}}
                  >
                    <CardMedia
                      component="div"

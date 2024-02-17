@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   get "/apartments", to: "apartments#index"
   get "/apartments/:id", to: "apartments#show"
+  post "/apartments", to: "apartment#create"
 
  
   

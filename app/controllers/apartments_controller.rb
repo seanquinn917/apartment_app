@@ -1,5 +1,15 @@
 class ApartmentsController < ApplicationController
-skip_before_action :authorized, only: [:index, :show]
+skip_before_action :authorized, only: [:index, :create, :destroy]
+
+
+    def create
+        apartment = Apartment.create!(apartment_params)
+        if apartment.valid?
+            render json: apartment, status: :created
+        else 
+            render json: {errors: apartment.errors.full_messages}, status: :unprocessable_entity
+        end
+    end
 
 
     def index
@@ -12,7 +22,17 @@ skip_before_action :authorized, only: [:index, :show]
         render json: apartment
     end 
 
+    def destroy
+        apartment = Apartment.find_by(id: params[:id])
+        apartment.destroy
+        head :no_content
+    end
 
+private
+
+def apartment_params
+ params.require(:apartment).permit(:number)
+end
 
 
 end

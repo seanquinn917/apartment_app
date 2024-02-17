@@ -25,6 +25,8 @@ function AptDetail({apartments, setApartments}){
         content:"",
       })
       
+   
+    
     
     if(!apartment){
         return <h1>loading...</h1>
@@ -44,6 +46,13 @@ function handleReviewFormChange(e){
     function addNewReview(e){
         e.preventDefault();
         setErrors([])
+        if (!newReviewContent.content) {
+          setErrors(["Input field cannot be blank!  Please add your comments"])
+          return; 
+        }if (newReviewContent.content.length < 3) {
+          setErrors(["Content must be at least 3 characters long."]);
+          return;
+        }
         fetch('/reviews',{
             method:"POST",
             headers:{
@@ -123,13 +132,21 @@ function handleReviewFormChange(e){
               content: e.target.value,
             });
           }
-          
-
+        
         function updateReview(reviewId, e){
             e.preventDefault()
             console.log("click")
             e.preventDefault();
              console.log(reviewId)
+             if (!updateReviewContent.content) {
+              setErrors(["Input field cannot be blank! Please make sure to EDIT your content"]);
+              console.log(newReviewContent)
+              return; 
+            }if (updateReviewContent.content.length < 3) {
+              setErrors(["Content must be at least 3 characters long."]);
+              return;
+            }
+  
             fetch(`/reviews/${reviewId}`,{
               method: "PATCH",
               headers:{
@@ -168,7 +185,7 @@ function handleReviewFormChange(e){
         })
 
  const errorList = errors.map((err, index)=>{
-  <li key= {index}>{err}</li>
+   <li key= {index}>{err}</li>
 })
 
 
@@ -238,7 +255,7 @@ function handleReviewFormChange(e){
             
             {showForm? (
                <form onSubmit={(e)=>updateReview(updateReviewContent.reviewId, e)}>
-            <label>change your mind {tenant.name}?</label>
+            <label>Change your mind {tenant.name}?</label>
             <input type="text" name="content" value={updateReviewContent.content}  onChange={(e)=>updateReviewFormChange(e, updateReviewContent.reviewId)}></input>
             <Button
                 type="submit"
@@ -258,6 +275,7 @@ function handleReviewFormChange(e){
                     Is this your home? We'd love to hear from you!
                     {errorList}
                 </Typography>
+                
                 <input type="text" name="content" value={newReviewContent.content} onChange={handleReviewFormChange}></input>
                 </ul>
                 

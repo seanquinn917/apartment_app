@@ -33,7 +33,7 @@ function Header(){
           method: "DELETE"
         }).then(()=>{
           setTenant(null)
-          navigate('/')})
+          navigate('/',{replace:true})})
       }
   
     //   const avatarUrl = tenant.avatar.record.avatar_url;

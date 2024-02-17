@@ -15,43 +15,88 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import UserContext from './User-Context';
 import { useNavigate } from 'react-router-dom';
 import AptCard from './AptCard';
+import SignIn from './SignIn';
 
-// function Copyright() {
-
-
-
-
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://mui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
 
 const cards = [1];
 
-// TODO remove, this demo shouldn't need to reset the theme.
+
 const defaultTheme = createTheme();
 
 export default function HomePage({apartments, setApartments}) {
   const[tenant, setTenant]=useContext(UserContext)
-  const navigate=useNavigate()
-   
+  const [newApartmentNumber, setNewApartmentNumber]=useState({
+    number:""
+  })
+  const[errors, setErrors]=useState([])
+ 
     
 
+    
+  if(tenant === null) {
+    return <SignIn />
+  }
+  
+
+  if(apartments===null){
+    return <p>Loading...</p>
+  }
+ 
+  
+   
    
     
-    if (tenant === null) {
-      return <p>Loading...</p>;
+    
+
+    function addNewApartment(e){
+      e.preventDefault()
+      console.log("click")
+      setErrors([])
+      if(!newApartmentNumber.number){
+        console.log('newApartmentNumber.number is falsy:', newApartmentNumber.number);
+        setErrors(["Input field cannot be blank!"])
+        return;
+      }if (newApartmentNumber.number === null) {
+        console.log('newApartmentNumber.number is null:', newApartmentNumber.number);
+        setErrors(["Content must be at least 3 characters long."]);
+        return;
+      }
+      fetch('/apartments',{
+        method: "POST",
+        headers: {
+          "content-type":"application/JSON"
+        },
+        body: JSON.stringify({
+          number:newApartmentNumber.number
+        })
+      })
+      .then((r)=>{
+        if(r.ok){
+            r.json()
+            .then((newApartment)=>{
+                setApartments([...apartments, newApartment])
+                setNewApartmentNumber({number: " "})
+            })
+        }else {
+            r.json().then((err)=>{
+                console.log(err)
+                setErrors([err.exception])
+                
+            })
+        }
+    })
+    
+    }
+
+    function apartmentFormChange(e){
+      setNewApartmentNumber({
+        ...newApartmentNumber,
+        [e.target.name]:e.target.value
+      })
     }
 
   const apt_number = apartments.map((apt)=>{
@@ -60,6 +105,10 @@ export default function HomePage({apartments, setApartments}) {
 
   const id = apartments.map((apt)=>{
     return apt.id
+  })
+
+  const errorList = errors.map((err, index)=>{
+    return <li style={{ listStyleType: 'none' }} key= {index}>{err}</li>
   })
 
   return (
@@ -94,16 +143,41 @@ export default function HomePage({apartments, setApartments}) {
               justifyContent="center"
             >
               <a href={"/leases/" + tenant.lease_id}>
-              <Button variant="contained">Check Out Your Lease</Button>
+              <Button variant="contained">Check Out Your Lease {tenant.name}</Button>
+              
               </a>
+              
               {}
-              {/* <Button variant="outlined">Secondary action</Button> */}
+              <a href={'/leases'}>
+              <Button variant="outlined">Create a new Lease</Button>
+              </a>
             </Stack>
           </Container>
+          <Stack
+              sx={{ pt: 4 }}
+              direction="row"
+              spacing={2}
+              justifyContent="center"
+            >
+          <Typography variant="h5" align="center" color="text.secondary" paragraph>
+        <form onSubmit={addNewApartment}>Add a new apartment Number here
+        <input type="text" name="number" value={newApartmentNumber.number} onChange={apartmentFormChange}></input>
+        <Button
+                type="submit"
+                // fullWidth
+                variant="outlined"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Submit
+              </Button>
+      </form>
+        {errorList} 
+        </Typography>
+        </Stack>
         </Box>
        
         {apartments.map((apt)=>{
-          return <AptCard 
+          return  <AptCard 
           key={apt.id}
           apartments={apartments}
           setApartments={setApartments}
@@ -113,21 +187,19 @@ export default function HomePage({apartments, setApartments}) {
         })}
         
       </main>
-
-
-
+        
+      
+    
       {/* Footer */}
       <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
+        
         <Typography
           variant="subtitle1"
           align="center"
           color="text.secondary"
           component="p"
         >
-          Something here to give the footer a purpose!
+          
         </Typography>
         {/* <Copyright /> */}
       </Box>

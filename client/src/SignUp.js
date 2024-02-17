@@ -48,13 +48,47 @@ function SignUp(){
       
       
 
-    function handleSubmit(e){
+    // function handleSubmit(e){
+    //   e.preventDefault();
+    //   setErrors([]);
+    //   if(!image) {
+    //     setIsImage(true)
+    //   }
+    //   const formData = new FormData();
+    //   formData.append('username', username)
+    //   formData.append('name', name)
+    //   formData.append('age', age)
+    //   formData.append('password', password)
+    //   formData.append('password_confirmation', passwordConfirmation)
+    //   formData.append('lease_id', lease_id)
+    //   formData.append('image', image)
+    //   console.log(formData)
+    //   fetch('/signup',{
+    //       method: "POST",
+    //       body: formData,
+    //   }).then((r)=> {
+    //       if(r.ok){
+    //           r.json()
+    //       .then((tenant)=>{
+    //           setTenant(tenant);
+    //           navigate('/home');
+    //         })
+    //       } 
+    //        else {
+    //           console.log("else statement")
+    //           r.json().then((err)=>setErrors(err.errors))
+    //       }
+    //   })
+    // }
+    function handleSubmit(e) {
       e.preventDefault();
       setErrors([]);
-      if(!image) {
-        setIsImage(true)
-      }else {
-        const formData = new FormData();
+      setIsImage(false); 
+      if (!username || !name || !age || !password || !passwordConfirmation || !lease_id || !image) {
+        setErrors(["*Please fill in all the fields* and don't forget to choose your AVATAR"]); 
+        return; 
+      }
+      const formData = new FormData();
         formData.append('username', username)
         formData.append('name', name)
         formData.append('age', age)
@@ -63,19 +97,29 @@ function SignUp(){
         formData.append('lease_id', lease_id)
         formData.append('image', image)
         console.log(formData)
-        fetch('/signup',{
-            method: "POST",
-            body: formData,
-        }).then((r)=> {
-            if(r.ok){
-                r.json()
-            .then((tenant)=>setTenant(tenant))
-            .then(()=>navigate('/home'))
+      fetch('/signup', {
+        method: "POST",
+        body: formData,
+      })
+      .then((r) => {
+        if (r.ok) {
+          return r.json()
+            .then((tenant) => {
+              setTenant(tenant);
+              navigate('/home', {replace:true});
+            });
         } else {
-            r.json().then((err)=>setErrors(err.errors))
+          return r.json()
+            .then((err) => {
+              const formattedErrors = err.errors.join(' & ');
+              setErrors([formattedErrors]);
+              throw new Error("Failed to create tenant");
+            });
         }
-        })
-      }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     }
    
 
@@ -177,8 +221,8 @@ function SignUp(){
             
             </Box>
         <ul>
-        {errors.map((err) => (
-          <List key={err}>{err}</List>
+        {errors.map((err, index) => (
+          <List key={index}>{err}</List>
         ))}
         </ul>
         <Link href="/login" variant="body2">

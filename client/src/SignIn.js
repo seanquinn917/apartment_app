@@ -13,7 +13,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import UserContext from './User-Context';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { List } from '@mui/material';
 
@@ -47,6 +47,13 @@ export default function SignIn() {
   const[errors, setErrors]=useState([])
 
   const navigate=useNavigate()
+
+
+if(tenant){
+  navigate('/home', {replace:true})
+}
+
+
   console.log(tenant)
   function onLogin(e) {
     e.preventDefault();
@@ -62,7 +69,7 @@ export default function SignIn() {
         if (r.ok) {
          r.json().then((tenant) => {
           setTenant(tenant);
-          navigate("/home");
+          navigate("/home", {replace: true});
         })
         } else {
           r.json().then((err) => setErrors(err.error));;
@@ -166,9 +173,7 @@ export default function SignIn() {
                   </Link>
                 </Grid> */}
                 <Grid item>
-                  <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
+                <Button onClick={(e)=>navigate('/signup', {replace:true})}>Dont Have an account? click here to sign Up</Button>
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />
