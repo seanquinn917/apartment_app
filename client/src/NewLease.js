@@ -31,8 +31,37 @@ function NewLease(){
         })
     }
 
-    function addNewLease(){
-
+    function addNewLease(e){
+        e.preventDefault()
+        setErrors([])
+        if(!newLeaseForm.rent || !newLeaseForm.content || !newLeaseForm.apartment_id){
+            setErrors(["Input field cannot blank!"])
+            return;
+        }
+        fetch('/leases',{
+            method:"POST",
+            headers:{
+                "content-type":"application/JSON"
+            },
+            body:JSON.stringify({
+                content:newLeaseForm.content,
+                rent:newLeaseForm.rent,
+                apartment_id:newLeaseForm.apartment_id
+            })
+        }).then((r)=>{
+            if(r.ok){
+                r.json()
+                .then((newLease)=>{
+                    setLeases([...leases, newLease])
+                })
+            }else{
+                r.json()
+                .then((err)=>{
+                    console.log(err)
+                    setErrors([err.exception])
+                })
+            }
+        })
     }
    
 

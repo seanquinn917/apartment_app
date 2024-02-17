@@ -19,7 +19,6 @@ skip_before_action :authorized, only: [:index]
         else 
             render json: {errors: lease.errors.full_messages}, status: :unprocessable_entity
         end
-            render json: lease, status: :created
     end
 
     def destroy 
@@ -33,7 +32,7 @@ skip_before_action :authorized, only: [:index]
     private
 
     def lease_params
-        params.permit(:id, :content, :rent, :tenant_id, :apartment_id)
+        params.require(:lease).permit(:id, :content, :rent, :apartment_id)
     end
 
 
