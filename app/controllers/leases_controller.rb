@@ -12,11 +12,11 @@ skip_before_action :authorized, only: [:index]
     render json: lease
     end
 
-    def destroy 
-    lease = Lease.find_by(id: params[:id])
-    lease.destroy
-    head :no_content
-    end
+    # def destroy 
+    # lease = Lease.find_by(id: params[:id])
+    # lease.destroy
+    # head :no_content
+    # end
 
 
 

@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
 
 
-  resources :leases, except: [:create]
+  resources :leases, except: [:create, :destroy]
   post '/leases', to: 'admin#create_lease', as: 'admin_create_lease'
-  delete "/leases/:id", to: "leases#destroy"
+  delete "/leases/:id", to: "admin#destroy_lease", as: 'admin_destroy_lease'
   get "/leases", to: "leases#index"
   get "/lease/:id", to: "leases#show"
 

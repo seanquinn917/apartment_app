@@ -80,10 +80,25 @@ function NewLease(){
             }
         })
     }
+
+    function deleteLease(leaseId){
+        console.log(leaseId);
+        fetch(`/leases/${leaseId}`,{
+            method:"DELETE",
+        })
+        .then((r)=>{
+            console.log(r)
+        })
+        .then(()=>{
+            setLeases(leases=>{
+                return leases.filter((lease)=>lease.id!==leaseId)
+            })
+        })
+    }
    
 
     const leaseInfo = leases.map((l)=>{
-        return <List style={{listStyleType:'none'}}>{l.content}, Rent amount:{l.rent}, for Apartment ID: {l.apartment_id}</List>
+        return <List key={l.id} style={{listStyleType:'none'}}><Button onClick={()=>deleteLease(l.id)}>Remove lease</Button>{l.content}, Rent amount:{l.rent}, for Apartment ID: {l.apartment_id}</List>
     })
     const errorList = errors.map((err, index)=>{
         <li key= {index}>{err}</li>
