@@ -1,7 +1,7 @@
 class TenantSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers  # Include this line
   
-  attributes :id, :name, :age, :username, :lease_id, :lease_content, :rent, :apartment_id, :image
+  attributes :id, :name, :age, :username, :lease_id, :lease_content, :rent, :apartment_id, :image, :role
   belongs_to :lease
   has_many :reviews
 

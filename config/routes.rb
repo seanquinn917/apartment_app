@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
 
 
-  resources :leases
-  post "/leases", to: "leases#create"
+  resources :leases, except: [:create]
+  post '/leases', to: 'admin#create_lease', as: 'admin_create_lease'
   delete "/leases/:id", to: "leases#destroy"
   get "/leases", to: "leases#index"
   get "/lease/:id", to: "leases#show"
@@ -24,12 +24,15 @@ Rails.application.routes.draw do
   delete '/tenants/:id', to: "tenants#destroy"
   
   
-  resources :apartments
-
+  resources :apartments, except: [:create]
+  post '/apartments', to: 'admin#create_apartment', as: 'admin_create_apartment'
   get "/apartments", to: "apartments#index"
   get "/apartments/:id", to: "apartments#show"
-  post "/apartments", to: "apartment#create"
-
+  
+  #  scope '/admin' do
+    
+    
+  #  end
  
   
   post "/login", to: "sessions#create"

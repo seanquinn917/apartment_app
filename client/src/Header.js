@@ -1,4 +1,5 @@
 import React, {useContext} from "react"
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -10,6 +11,8 @@ import Box from '@mui/material/Box';
 import { useNavigate } from "react-router-dom";
 import './App.css';
 
+
+
 function UserImage ({imageUrl}){
   return <img src={imageUrl} alt= "user avatar"/>
  };
@@ -18,7 +21,7 @@ function Header(){
     const[tenant, setTenant]=useContext(UserContext)
     const defaultTheme = createTheme();
     const navigate = useNavigate();
-
+    // const history=useHistory()
    
 
    
@@ -33,7 +36,9 @@ function Header(){
           method: "DELETE"
         }).then(()=>{
           setTenant(null)
-          navigate('/',{replace:true})})
+          navigate('/',{replace:true})
+          navigate(0);
+        })
       }
   
     //   const avatarUrl = tenant.avatar.record.avatar_url;

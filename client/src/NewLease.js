@@ -4,7 +4,8 @@ import { List } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Button } from "@mui/material";
-
+import { useNavigate } from "react-router-dom";
+import SignIn from "./SignIn";
 
 
 function NewLease(){
@@ -17,11 +18,24 @@ function NewLease(){
         apartment_id:""
     })
 
+
+
+   
+
     useEffect(()=>{
         fetch('/leases')
         .then((r)=>r.json())
         .then((data)=>setLeases(data))
     },[])
+
+    
+    
+    if(leases===null){
+        return<p>Loading</p>
+    }
+
+
+    
 
     function handleLeaseFormChange(e){
         e.preventDefault()
@@ -34,6 +48,10 @@ function NewLease(){
     function addNewLease(e){
         e.preventDefault()
         setErrors([])
+        if(tenant.role === "user"){
+            setErrors(["Not Authorized!"])
+            return;
+          }
         if(!newLeaseForm.rent || !newLeaseForm.content || !newLeaseForm.apartment_id){
             setErrors(["Input field cannot blank!"])
             return;
@@ -57,8 +75,7 @@ function NewLease(){
             }else{
                 r.json()
                 .then((err)=>{
-                    console.log(err)
-                    setErrors([err.exception])
+                    setErrors([err.errors])
                 })
             }
         })

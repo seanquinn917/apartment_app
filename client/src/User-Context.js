@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import SignIn from "./SignIn";
 
 
 
@@ -17,12 +18,12 @@ export const UserProvider = ({children}) =>{
         if (response.ok) {
           const tenant = await response.json();
           setTenant(tenant);
-        }
+        } else if (response.status === 401 || response.status === 403) {
+        return <SignIn/>}
       } catch (error) {
         console.log(error);
       }
     };
-console.log(tenant)
     fetchData();
   }, []);
 

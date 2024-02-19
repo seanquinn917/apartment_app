@@ -1,4 +1,5 @@
 class Tenant < ApplicationRecord
+    enum role: { user: "user", admin: "admin" }, _default: "user"
     validates :username, presence: true 
     validates :username, uniqueness: true
     validates :name, presence:true

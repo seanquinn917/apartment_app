@@ -34,12 +34,9 @@ export default function HomePage({apartments, setApartments}) {
   })
   const[errors, setErrors]=useState([])
  
-    
+  const navigate=useNavigate()
 
-    
-  if(tenant === null) {
-    return <SignIn />
-  }
+ 
   
 
   if(apartments===null){
@@ -48,14 +45,21 @@ export default function HomePage({apartments, setApartments}) {
  
   
    
-   
+      
+  if(tenant === null) {
+    return <SignIn/>
+  }
     
     
-
+console.log(tenant.role)
     function addNewApartment(e){
       e.preventDefault()
       console.log("click")
       setErrors([])
+      if(tenant.role === "user"){
+        setErrors(["Not Authorized!"])
+        return;
+      }
       if(!newApartmentNumber.number){
         console.log('newApartmentNumber.number is falsy:', newApartmentNumber.number);
         setErrors(["Input field cannot be blank!"])
@@ -83,8 +87,8 @@ export default function HomePage({apartments, setApartments}) {
             })
         }else {
             r.json().then((err)=>{
-                console.log(err)
-                setErrors([err.exception])
+              console.log(err)
+                setErrors([err.errors])
                 
             })
         }
@@ -147,10 +151,10 @@ export default function HomePage({apartments, setApartments}) {
               
               </a>
               
-              {}
+              {tenant.role === "admin" ? 
               <a href={'/leases'}>
               <Button variant="outlined">Create a new Lease</Button>
-              </a>
+              </a> : null }
             </Stack>
           </Container>
           <Stack
@@ -159,7 +163,7 @@ export default function HomePage({apartments, setApartments}) {
               spacing={2}
               justifyContent="center"
             >
-          <Typography variant="h5" align="center" color="text.secondary" paragraph>
+          {tenant.role==="admin"? <Typography variant="h5" align="center" color="text.secondary" paragraph>
         <form onSubmit={addNewApartment}>Add a new apartment Number here
         <input type="text" name="number" value={newApartmentNumber.number} onChange={apartmentFormChange}></input>
         <Button
@@ -172,7 +176,7 @@ export default function HomePage({apartments, setApartments}) {
               </Button>
       </form>
         {errorList} 
-        </Typography>
+        </Typography> : null}
         </Stack>
         </Box>
        

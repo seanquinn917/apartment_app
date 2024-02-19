@@ -3,7 +3,7 @@ import UserContext from "./User-Context";
 import { useParams } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
+import AppBar, { appBarClasses } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -16,7 +16,9 @@ function LeaseDetail({apartments, setApartments}){
     const {id}=useParams()
     const[tenant, setTenant]=useContext(UserContext)
     
-
+if(apartments=null){
+  return <p>Loading...</p>
+}
     
     if(!tenant) {
       return <SignIn />

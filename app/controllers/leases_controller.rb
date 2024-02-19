@@ -12,15 +12,6 @@ skip_before_action :authorized, only: [:index]
     render json: lease
     end
 
-    def create 
-    lease = Lease.create!(lease_params)
-        if lease.valid?
-            render json: lease, status: :created
-        else 
-            render json: {errors: lease.errors.full_messages}, status: :unprocessable_entity
-        end
-    end
-
     def destroy 
     lease = Lease.find_by(id: params[:id])
     lease.destroy

@@ -17,6 +17,8 @@ import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { List } from '@mui/material';
 
+
+
 function Copyright(props) {
   const [errors, setErrors] = useState([]);
 
@@ -75,32 +77,17 @@ if(tenant){
           r.json().then((err) => setErrors(err.error));;
         }
       })
-      
-      
-      // .catch((err) => {
-      //   setErrors(err.errors);
-        
-      // });
   }
-
-  
-  
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  // };
-
 
  
 
   return (
     <ThemeProvider theme={defaultTheme}>
+      
       <Grid container component="main" sx={{ height: '100vh' }}>
+     
         <CssBaseline />
+        
         <Grid
           item
           xs={false}

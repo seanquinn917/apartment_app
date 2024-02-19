@@ -101,7 +101,7 @@ def destroy
 end
 
 def tenant_params
-    params.permit(:id, :name, :age, :lease_id, :password, :password_confirmation, :username)
+    params.permit(:id, :name, :age, :lease_id, :password, :password_confirmation, :username, :role)
 end
 
 # def image_params
