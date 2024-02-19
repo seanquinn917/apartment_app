@@ -22,6 +22,16 @@ class AdminController < ApplicationController
         end
     end
 
+    def destroy_apartment
+        apartment=Apartment.find_by(id: params[:id])
+        if apartment
+            apartment.destroy
+            head :no_content
+        else
+            render json: {error: "Apartment Not Found"}, status: :not_found
+        end
+    end
+
     
     def create_lease
         lease = Lease.create(lease_params)

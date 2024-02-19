@@ -1,5 +1,5 @@
 class ApartmentsController < ApplicationController
-skip_before_action :authorized, only: [:index, :destroy]
+skip_before_action :authorized, only: [:index]
 
 
 
@@ -14,11 +14,7 @@ skip_before_action :authorized, only: [:index, :destroy]
         render json: apartment
     end 
 
-    def destroy
-        apartment = Apartment.find_by(id: params[:id])
-        apartment.destroy
-        head :no_content
-    end
+    
 
 private
 

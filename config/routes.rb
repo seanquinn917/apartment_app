@@ -24,8 +24,9 @@ Rails.application.routes.draw do
   delete '/tenants/:id', to: "tenants#destroy"
   
   
-  resources :apartments, except: [:create]
+  resources :apartments, except: [:create, :destroy]
   post '/apartments', to: 'admin#create_apartment', as: 'admin_create_apartment'
+  delete '/apartments/:id', to: 'admin#destroy_apartment', as:'admin_destroy_apartment'
   get "/apartments", to: "apartments#index"
   get "/apartments/:id", to: "apartments#show"
   

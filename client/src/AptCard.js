@@ -19,7 +19,20 @@ function AptCard({id, number, apartments, setApartments}){
 
 const cards = [1];
 
- 
+ function deleteApartment(e){
+  e.preventDefault()
+  fetch(`/apartments/${id}`,{
+    method: "DELETE",
+  })
+  .then((r)=>{
+    console.log (r)
+  })
+  .then(()=>{
+    setApartments(apartments=>{
+      return apartments.filter((apt)=>apt.id!==id)
+    })
+  })
+ }
 
 
     return(
@@ -59,6 +72,7 @@ const cards = [1];
                    <CardActions>
                      {/* <Button size="small" onClick={(e)=> navigate(`/apartments/${id}`)}>View More</Button> */}
                      <Link to={`/apartments/${id}`}>View More</Link>
+                     <Button onClick={deleteApartment}>Remove Apartment</Button>
                      {/* <Button size="small">Edit</Button> */}
                    </CardActions>
                  </Card>
