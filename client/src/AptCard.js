@@ -72,7 +72,7 @@ const cards = [1];
                    <CardActions>
                      {/* <Button size="small" onClick={(e)=> navigate(`/apartments/${id}`)}>View More</Button> */}
                      <Link to={`/apartments/${id}`}>View More</Link>
-                     <Button onClick={deleteApartment}>Remove Apartment</Button>
+                     {tenant.role==="admin"?<Button onClick={deleteApartment}>Remove Apartment</Button> : null}
                      {/* <Button size="small">Edit</Button> */}
                    </CardActions>
                  </Card>
