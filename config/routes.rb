@@ -16,12 +16,13 @@ Rails.application.routes.draw do
   patch "/reviews/:id", to: "reviews#update"
 
 
-  resources :tenants
+  resources :tenants, except: [:destroy]
+  delete '/tenants/:id', to: "admin#destroy_tenant", as: 'admin_destroy_tenant'
   post "/signup", to: "tenants#create"
   get "/tenants/:id", to: "tenants#show"
   get "/me", to: "tenants#show"
   get "/tenants", to: "tenants#index"
-  delete '/tenants/:id', to: "tenants#destroy"
+  
   
   
   resources :apartments, except: [:create, :destroy]

@@ -1,5 +1,5 @@
 class TenantsController < ApplicationController
-    skip_before_action :authorized, only: [:create, :show, :index, :destroy]
+    skip_before_action :authorized, only: [:create, :show, :index]
 
 
 
@@ -94,18 +94,11 @@ def show
 end
 
 
-def destroy
-    tenant = Tenant.find_by(id:params[:id])
-    tenant.destroy
-    head :no_content
-end
 
 def tenant_params
     params.permit(:id, :name, :age, :lease_id, :password, :password_confirmation, :username, :role)
 end
 
-# def image_params
-#     params.permit(:image)
-# end
+
 
 end

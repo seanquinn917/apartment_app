@@ -2,7 +2,6 @@ class AdminController < ApplicationController
     before_action :authorized_admin
 
     def authorized_admin
-        # return render json: { error: "Not Authorized" }, status: :unauthorized unless session.include?(:tenant_id)
         @current_tenant = Tenant.find_by(id: session[:tenant_id])
         return render json: { error: "Not Authorized" }, status: :unauthorized unless @current_tenant&.admin?
     end
@@ -52,6 +51,12 @@ class AdminController < ApplicationController
         end
     end
 
+    
+    def destroy_tenant
+        tenant = Tenant.find_by(id:params[:id])
+        tenant.destroy
+        head :no_content
+    end
     
 
     private
