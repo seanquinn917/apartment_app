@@ -93,17 +93,13 @@ function handleReviewFormChange(e){
         })
           .then((r) => {
             if (r.status === 204) {
-              // Deletion was successful, no content to parse
               return null;
             } else {
-              // Parse the response as JSON
               return r.json();
             }
           })
           .then((deletedReview) => {
             if (deletedReview === null) {
-              // Deletion was successful, handle accordingly
-              // e.g., remove the deleted review from the movies array
               const updatedApartments = apartments.map((apt) => {
                 const updatedReviews = apt.reviews.filter(
                   (review) => review.id !== reviewId
@@ -115,8 +111,6 @@ function handleReviewFormChange(e){
               });
               setApartments(updatedApartments);
             } else {
-              // Handle the response as JSON in case of an error or unexpected response
-              // ...
               console.log("oops")
             }
           });

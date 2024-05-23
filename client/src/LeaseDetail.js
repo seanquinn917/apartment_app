@@ -21,7 +21,7 @@ if(apartments=null){
 }
     
     if(!tenant) {
-      return <SignIn />
+      return <p>Loading...</p>
     }
     
     console.log(tenant)
