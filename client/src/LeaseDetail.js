@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import SignIn from "./SignIn";
+
 
 
 function LeaseDetail({apartments, setApartments}){
@@ -60,11 +60,7 @@ if(apartments=null){
               spacing={2}
               justifyContent="center"
             >
-              <a href={"/leases/" + tenant.lease_id}>
-              {/* <Button variant="contained">Check Out Your Lease</Button> */}
-              </a>
-              {}
-              {/* <Button variant="outlined">Secondary action</Button> */}
+              <a href={"/leases/" + tenant.lease_id}></a>
             </Stack>
           </Container>
         </Box>
