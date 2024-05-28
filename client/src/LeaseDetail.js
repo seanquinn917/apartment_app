@@ -3,8 +3,6 @@ import UserContext from "./User-Context";
 import { useParams } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import AppBar, { appBarClasses } from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -19,15 +17,11 @@ function LeaseDetail({apartments, setApartments}){
 if(apartments=null){
   return <p>Loading...</p>
 }
+if(!tenant) {
+  return <p>Loading...</p>
+}
     
-    if(!tenant) {
-      return <p>Loading...</p>
-    }
-    
-    console.log(tenant)
-  
-    const defaultTheme = createTheme();
-    
+const defaultTheme = createTheme();
     return (
         <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
