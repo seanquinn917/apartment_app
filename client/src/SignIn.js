@@ -20,11 +20,7 @@ import { List } from '@mui/material';
 
 
 function Copyright(props) {
-  const [errors, setErrors] = useState([]);
-
-
-
-
+const [errors, setErrors] = useState([]);
 
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -38,8 +34,6 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export default function SignIn() {
@@ -50,14 +44,11 @@ export default function SignIn() {
 
   const navigate=useNavigate()
 
-
 if(tenant){
   navigate('/home', {replace:true})
 }
 
-
-  console.log(tenant)
-  function onLogin(e) {
+function onLogin(e) {
     e.preventDefault();
     setErrors([])
     fetch("/login", {
@@ -83,11 +74,8 @@ if(tenant){
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      
       <Grid container component="main" sx={{ height: '100vh' }}>
-     
         <CssBaseline />
-        
         <Grid
           item
           xs={false}
@@ -112,9 +100,6 @@ if(tenant){
               alignItems: 'center',
             }}
           >
-            {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}> */}
-              {/* <LockOutlinedIcon /> */}
-            {/* </Avatar> */}
             <Typography component="h1" variant="h5">
               Livadia Realty 
             </Typography>
@@ -154,11 +139,6 @@ if(tenant){
                 Sign In
               </Button>
               <Grid container>
-                {/* <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid> */}
                 <Grid item>
                 <Button onClick={(e)=>navigate('/signup', {replace:true})}>Dont Have an account? click here to sign Up</Button>
                 </Grid>
