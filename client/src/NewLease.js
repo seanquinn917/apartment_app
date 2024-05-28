@@ -4,8 +4,7 @@ import { List } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import SignIn from "./SignIn";
+
 
 
 function NewLease(){
@@ -18,24 +17,15 @@ function NewLease(){
         apartment_id:""
     })
 
-
-
-   
-
     useEffect(()=>{
         fetch('/leases')
         .then((r)=>r.json())
         .then((data)=>setLeases(data))
     },[])
 
-    
-    
     if(leases===null){
         return<p>Loading</p>
     }
-
-
-    
 
     function handleLeaseFormChange(e){
         e.preventDefault()
@@ -96,7 +86,6 @@ function NewLease(){
         })
     }
    
-
     const leaseInfo = leases.map((l)=>{
         return <List key={l.id} style={{listStyleType:'none'}}><Button onClick={()=>deleteLease(l.id)}>Remove lease</Button>{l.content}, Rent amount:{l.rent}, for Apartment ID: {l.apartment_id}</List>
     })
@@ -118,13 +107,9 @@ function NewLease(){
                 <input type="text" name="rent" value={newLeaseForm.rent} onChange={handleLeaseFormChange}></input>
                 <label>Apartment Id</label>
                 <input type="text" name="apartment_id" value={newLeaseForm.apartment_id} onChange={handleLeaseFormChange}></input>
-                
-                
-                
                 </ul>
                 <Button
                 type="submit"
-                // fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
@@ -133,10 +118,8 @@ function NewLease(){
               <Typography>{errors}</Typography>
                </form>
            {leaseInfo} 
-           
     </Container>
-
-    )
+    );
 };
 
 
