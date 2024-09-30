@@ -20,6 +20,7 @@ import UserContext from './User-Context';
 import { useNavigate } from 'react-router-dom';
 import AptCard from './AptCard';
 import SignIn from './SignIn';
+import './App.css';
 
 
 const cards = [1];
@@ -118,7 +119,7 @@ console.log(tenant.role)
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <main>
+      <main className='boxes'>
         {/* Hero unit */}
         <Box
           sx={{
