@@ -32,54 +32,6 @@ function SignUp(){
         setImage(file);
       };
 
-
-      
-     
-      
-      // const newTenant={
-      //     username,
-      //     age,
-      //     name,
-      //     password,
-      //     password_confirmation: passwordConfirmation,
-      //     lease_id,
-      //     image:image
-      // }
-      
-      
-
-    // function handleSubmit(e){
-    //   e.preventDefault();
-    //   setErrors([]);
-    //   if(!image) {
-    //     setIsImage(true)
-    //   }
-    //   const formData = new FormData();
-    //   formData.append('username', username)
-    //   formData.append('name', name)
-    //   formData.append('age', age)
-    //   formData.append('password', password)
-    //   formData.append('password_confirmation', passwordConfirmation)
-    //   formData.append('lease_id', lease_id)
-    //   formData.append('image', image)
-    //   console.log(formData)
-    //   fetch('/signup',{
-    //       method: "POST",
-    //       body: formData,
-    //   }).then((r)=> {
-    //       if(r.ok){
-    //           r.json()
-    //       .then((tenant)=>{
-    //           setTenant(tenant);
-    //           navigate('/home');
-    //         })
-    //       } 
-    //        else {
-    //           console.log("else statement")
-    //           r.json().then((err)=>setErrors(err.errors))
-    //       }
-    //   })
-    // }
     function handleSubmit(e) {
       e.preventDefault();
       setErrors([]);
@@ -122,9 +74,8 @@ function SignUp(){
       });
     }
    
-
     return(
-        <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -199,7 +150,7 @@ function SignUp(){
             value={lease_id}
             onChange={(e)=>setLease_id(e.target.value)}
             />
-             </Grid> 
+            </Grid> 
              
             <Grid item xs={12} sm={6}>
             
@@ -218,7 +169,6 @@ function SignUp(){
             
             </Grid>
             </Grid>
-            
             </Box>
         <ul>
         {errors.map((err, index) => (
@@ -226,8 +176,8 @@ function SignUp(){
         ))}
         </ul>
         <Link href="/login" variant="body2">
-                    {"ALready Signed up? Click here to login"}
-            </Link>
+              {"ALready Signed up? Click here to login"}
+        </Link>
         </Container>
     </ThemeProvider>
     )

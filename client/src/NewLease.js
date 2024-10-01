@@ -90,7 +90,7 @@ function NewLease(){
         return <List key={l.id} style={{listStyleType:'none'}}><Button onClick={()=>deleteLease(l.id)}>Remove lease</Button>{l.content}, Rent amount:{l.rent}, for Apartment ID: {l.apartment_id}</List>
     })
     const errorList = errors.map((err, index)=>{
-        <li key= {index}>{err}</li>
+        <li key={index}>{err}</li>
      })
      
     return(
