@@ -13,10 +13,6 @@ import NewLease from './NewLease';
 
 function App() {
   const[apartments, setApartments]=useState([])
-  
- 
-
-
 
   useEffect(()=>{
       fetch("/apartments")
@@ -24,11 +20,6 @@ function App() {
       .then((data)=>setApartments(data))
   }, [])
   
-    
-  
-
-
-
   return (
     <div className="App">
       <BrowserRouter>

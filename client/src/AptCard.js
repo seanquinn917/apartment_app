@@ -33,21 +33,11 @@ const cards = [1];
     })
   })
  }
-
-
     return(
-
-      
-
         <div>
-
-
-
-          
          <Container  sx={{ py: 4}} maxWidth="md">
            {/* End hero unit */}
            <Grid container spacing={0}>
-         
              {cards.map((card) => (
                <Grid item key={card} xs={12} sm={6} md={4}>
                  <Card  
@@ -80,12 +70,7 @@ const cards = [1];
              ))}
            </Grid>
          </Container>
-
-
-
-
         </div>
-        
     )
 }
 

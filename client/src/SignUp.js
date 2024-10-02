@@ -141,7 +141,6 @@ function SignUp(){
             onChange={(e)=>setName(e.target.value)}
             />
             </Grid> 
-
             <Grid item xs={12} sm={6}>
             <TextField
             label="LeaseID"
