@@ -25,14 +25,10 @@ function AptDetail({apartments, setApartments}){
         content:"",
       })
       
-   
-    
-    
     if(!apartment){
         return <h1>loading...</h1>
     }
 
-    
 function handleReviewFormChange(e){
     e.preventDefault()
     setNewReviewContent({
@@ -41,8 +37,6 @@ function handleReviewFormChange(e){
      })
 
 }
-
-   
     function addNewReview(e){
         e.preventDefault();
         setErrors([])
@@ -78,15 +72,10 @@ function handleReviewFormChange(e){
                 r.json().then((err)=>{
                     console.log(err)
                     setErrors([err.exception])
-                    
-                })
-            }
+            })
+          }
         })
-        
-        }
-        
-
-
+      }
     function deleteReview(reviewId){
         fetch(`/reviews/${reviewId}`, {
           method: "DELETE",

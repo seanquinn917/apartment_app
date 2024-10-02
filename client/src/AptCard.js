@@ -15,11 +15,9 @@ import { useNavigate, Link } from 'react-router-dom';
 function AptCard({id, number, apartments, setApartments}){
     const[tenant, setTenant]=useContext(UserContext)
     const navigate=useNavigate()
-
-
-const cards = [1];
-
- function deleteApartment(e){
+    const cards = [1];
+    
+function deleteApartment(e){
   e.preventDefault()
   fetch(`/apartments/${id}`,{
     method: "DELETE",
