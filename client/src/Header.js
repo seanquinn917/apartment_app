@@ -21,14 +21,6 @@ function Header(){
     const[tenant, setTenant]=useContext(UserContext)
     const defaultTheme = createTheme();
     const navigate = useNavigate();
-    // const history=useHistory()
-   
-
-   
-    // if(!tenant){
-    //     return <h1>loading...</h1>
-    // }
-    // console.log(tenant.avatar)
 
     function logOut(e){
         e.preventDefault();
