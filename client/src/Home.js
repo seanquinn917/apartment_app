@@ -14,9 +14,6 @@ const tenants = apartments.map((apt)=>{
     return <li key={apt.id}>{apt.id}, {user}</li>
 })
 
-
-
-
     return(
         <div>
             <h1>Welcome Home</h1>

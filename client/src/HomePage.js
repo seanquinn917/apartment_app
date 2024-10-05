@@ -25,7 +25,6 @@ import './App.css';
 
 const cards = [1];
 
-
 const defaultTheme = createTheme();
 
 export default function HomePage({apartments, setApartments}) {
@@ -37,22 +36,14 @@ export default function HomePage({apartments, setApartments}) {
  
   const navigate=useNavigate()
 
- 
-  
-
   if(apartments===null){
     return <p>Loading...</p>
   }
  
-  
-   
-      
   if(tenant === null) {
     return <SignIn/>
   }
     
-    
-console.log(tenant.role)
     function addNewApartment(e){
       e.preventDefault()
       console.log("click")
