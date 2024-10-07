@@ -86,8 +86,6 @@ function SignUp(){
             alignItems: 'center',
           }}
         ></Box>
-
-       
             <Typography component="h1" variant="h5">
               Sign Up Here
             </Typography>
@@ -165,7 +163,6 @@ function SignUp(){
             <div className="Form Control">
                 <Button type="submit">Signup</Button>
             </div>
-            
             </Grid>
             </Grid>
             </Box>

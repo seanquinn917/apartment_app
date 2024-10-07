@@ -25,7 +25,6 @@ const defaultTheme = createTheme();
     return (
         <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
-        
         <Box
           sx={{
             bgcolor: 'background.paper',
