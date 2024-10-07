@@ -8,8 +8,6 @@ const UserContext = createContext(null);
 export const UserProvider = ({children}) =>{
     const [tenant, setTenant]= useState(null);
 
-  
-    
   useEffect(() => {
     console.log("hello from context")
     const fetchData = async () => {
@@ -26,9 +24,6 @@ export const UserProvider = ({children}) =>{
     };
     fetchData();
   }, []);
-
-
-
 
     return(
         <UserContext.Provider value={[tenant, setTenant]}>
